@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a39d1f81-e0d2-4161-8ef4-bdf4e223a77f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="32"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="6d52bd0d-f626-4e51-9702-8c490edbfec2"/>
+	<parameter name="tglPesan" class="java.lang.String"/>
+	<parameter name="tglTerima" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     penjualan.`no_faktur` AS "No Faktur",
+     penjualan.`id_pelanggan` AS "ID Pelanggan",
+     pelanggan.`nama` AS "Nama Pelanggan",
+     barang.`nama` AS "Nama Barang",
+     barang.`harga` AS "Harga Barang",
+     detil_jual.`jumlah` AS "Jumlah Beli",
+     detil_jual.`harga` AS "Sub Total",
+     penjualan.`tgl_penjualan` AS "Tanggal Transaksi"
+FROM
+     `pelanggan` pelanggan INNER JOIN `penjualan` penjualan ON pelanggan.`id_pelanggan` = penjualan.`id_pelanggan`
+     INNER JOIN `detil_jual` detil_jual ON penjualan.`no_faktur` = detil_jual.`no_faktur`
+     INNER JOIN `barang` barang ON detil_jual.`kode_barang` = barang.`kode_barang` WHERE penjualan.`tgl_penjualan` BETWEEN $P{tglPesan} AND $P{tglTerima}]]>
+	</queryString>
+	<field name="No Faktur" class="java.lang.String"/>
+	<field name="ID Pelanggan" class="java.lang.String"/>
+	<field name="Nama Pelanggan" class="java.lang.String"/>
+	<field name="Nama Barang" class="java.lang.String"/>
+	<field name="Harga Barang" class="java.lang.Float"/>
+	<field name="Jumlah Beli" class="java.lang.Integer"/>
+	<field name="Sub Total" class="java.lang.Float"/>
+	<field name="Tanggal Transaksi" class="java.sql.Date"/>
+	<group name="Tanggal Transaksi">
+		<groupExpression><![CDATA[$F{Tanggal Transaksi}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="5" y="7" width="797" height="24" forecolor="#B89F7D" backcolor="#70A9C6" uuid="616e3c46-37f2-40be-99c6-4caaaea56a03"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="263" height="23" forecolor="#FFFFFF" uuid="ad9df907-b867-4c61-8aab-f8b5921ceca4"/>
+						<textElement>
+							<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Tanggal Transaksi}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="65" width="449" height="29" uuid="3f49d849-f020-40c5-9daf-51dbfb5639e5"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Periode ]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="822" height="65" forecolor="#006699" backcolor="#006699" uuid="7986447e-0a00-4b74-95ff-3dfd60565f8c"/>
+				<staticText>
+					<reportElement style="Title" x="231" y="0" width="578" height="65" uuid="cbe3279e-db7a-4161-8c2f-0074e0fbbb5f"/>
+					<textElement textAlignment="Right">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Laporan Transaksi ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement x="3" y="0" width="799" height="14" uuid="131622f3-5836-46a3-be28-8be04b985904"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="16" y="0" width="82" height="14" forecolor="#000000" uuid="09c3f770-53d5-4931-af9b-070f5468d7f7"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[No Faktur]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="125" y="0" width="82" height="14" forecolor="#000000" uuid="ef4905d6-ad9b-4c36-a198-b442e329db1f"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[ID Pelanggan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="228" y="0" width="82" height="14" forecolor="#000000" uuid="8da58af2-427b-4ae5-946e-e3655c01906c"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Nama Pelanggan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="310" y="0" width="82" height="14" forecolor="#000000" uuid="8b7520e6-598f-42df-ada0-fdda9f373eb3"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Nama Barang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="445" y="0" width="82" height="14" forecolor="#000000" uuid="7982d5dd-ba6a-4103-9b3a-9790d1651ca7"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Harga Barang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="582" y="0" width="82" height="14" forecolor="#000000" uuid="865df01e-2f8f-4d1f-ba6e-eea824c7208c"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Jumlah Beli]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="686" y="0" width="82" height="14" forecolor="#000000" uuid="976a76c3-fb34-4094-8553-fb39776b86df"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Sub Total]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="3" y="14" width="799" height="1" uuid="04e5b957-de99-4206-bc78-0cca0409b7b0"/>
+			</line>
+			<frame>
+				<reportElement x="3" y="0" width="799" height="14" uuid="a76439d7-920d-4977-bac4-109924929dc3"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="98" height="14" uuid="f52a37e8-8bad-4b97-892f-f982058f8b5b"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{No Faktur}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="146" y="0" width="82" height="14" uuid="58cbcaca-e1de-4e2f-9ad8-4bf5c5c9895b"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID Pelanggan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="228" y="0" width="82" height="14" uuid="ffd892a6-a091-4fd9-a71e-b45e4e0bed72"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Nama Pelanggan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="310" y="0" width="82" height="14" uuid="b5c467e8-9b6f-49bc-bfaa-061ca1a11cb2"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="455" y="0" width="82" height="14" uuid="ed7c71de-8577-4e8c-b69f-a568db301029"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Harga Barang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="607" y="0" width="57" height="14" uuid="694195ab-71d8-4243-ba83-9458d16431a3"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Jumlah Beli}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="686" y="0" width="82" height="14" uuid="61a1ce2f-65d7-4814-b250-7f8b4160cfdd"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Sub Total}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="519fc65f-4823-40e2-bdac-76e3f30df67e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#D0B48E" backcolor="#006699" uuid="27dfef75-329a-4d91-908b-914a7ce1172f"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="62beb14b-df64-44d8-bac0-8af1555f3fcb"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="538556c4-a5a2-4787-9ad8-d4a41f503810"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="3936fb07-d6f8-4e82-82d4-7f1e85798f3d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
