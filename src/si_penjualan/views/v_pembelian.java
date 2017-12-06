@@ -108,7 +108,6 @@ public class v_pembelian extends javax.swing.JFrame {
         String[] JudulKolom = {"Kode Barang", "Nama Barang", "Harga", "Jumlah", "Subtotal"};
         tabModel = new DefaultTableModel(null, JudulKolom) {
             boolean[] canEdit = new boolean[]{false, false, false, false, false};
-
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
