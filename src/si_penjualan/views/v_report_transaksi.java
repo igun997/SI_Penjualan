@@ -125,7 +125,7 @@ public class v_report_transaksi extends javax.swing.JFrame {
             JasDes = JRXmlLoader.load(report);
             param.clear();
             JasRep = JasperCompileManager.compileReport(JasDes);
-            JasPrint = JasperFillManager.fillReport(JasRep, param, dbconnection.getConnection());
+            JasPrint = JasperFillManager.fillReport(JasRep, hash, dbconnection.getConnection());
             JasperViewer.viewReport(JasPrint, false);
         } catch (JRException ex) {
             Logger.getLogger(v_barang.class.getName()).log(Level.SEVERE, null, ex);

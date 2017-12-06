@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a39d1f81-e0d2-4161-8ef4-bdf4e223a77f">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="32"/>
+	<property name="ireport.x" value="198"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -56,18 +56,18 @@ FROM
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="6"/>
+			<band height="23"/>
 		</groupFooter>
 	</group>
 	<title>
 		<band height="94" splitType="Stretch">
-			<staticText>
-				<reportElement style="SubTitle" x="336" y="65" width="449" height="29" uuid="3f49d849-f020-40c5-9daf-51dbfb5639e5"/>
+			<textField>
+				<reportElement style="SubTitle" x="260" y="65" width="125" height="29" uuid="3f49d849-f020-40c5-9daf-51dbfb5639e5"/>
 				<textElement textAlignment="Right">
 					<font size="22" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Periode ]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{tglPesan}]]></textFieldExpression>
+			</textField>
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="0" width="822" height="65" forecolor="#006699" backcolor="#006699" uuid="7986447e-0a00-4b74-95ff-3dfd60565f8c"/>
 				<staticText>
@@ -78,6 +78,20 @@ FROM
 					<text><![CDATA[Laporan Transaksi ]]></text>
 				</staticText>
 			</frame>
+			<textField>
+				<reportElement style="SubTitle" x="385" y="65" width="145" height="29" uuid="0b25507e-342e-4cd4-a832-7392b478eef1"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tglTerima}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SubTitle" x="395" y="65" width="15" height="29" uuid="0b25507e-342e-4cd4-a832-7392b478eef1"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -140,7 +154,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="3" y="14" width="799" height="1" uuid="04e5b957-de99-4206-bc78-0cca0409b7b0"/>
 			</line>
