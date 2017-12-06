@@ -5,14 +5,11 @@
  */
 package si_penjualan.views;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import si_penjualan.entity.barang;
-import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -47,10 +44,6 @@ public class v_pembelian extends javax.swing.JFrame {
         disable_info();
         setTabel();
         initFaktur();
-    }
-
-    private void getNoFaktur() {
-
     }
 
     private void initFaktur() {
