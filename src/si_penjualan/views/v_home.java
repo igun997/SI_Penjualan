@@ -114,9 +114,19 @@ public class v_home extends javax.swing.JFrame {
         mLaporan.setText("LAPORAN");
 
         SLBarang.setText("BARANG");
+        SLBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SLBarangActionPerformed(evt);
+            }
+        });
         mLaporan.add(SLBarang);
 
         SLPelanggan.setText("PELANGGAN");
+        SLPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SLPelangganActionPerformed(evt);
+            }
+        });
         mLaporan.add(SLPelanggan);
 
         SLTransaksi.setText("TRANSAKSI");
@@ -167,6 +177,16 @@ public class v_home extends javax.swing.JFrame {
         v_report_transaksi ob = new v_report_transaksi();
         ob.setVisible(true);
     }//GEN-LAST:event_SLTransaksiActionPerformed
+
+    private void SLBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SLBarangActionPerformed
+        v_report_barang o = new v_report_barang();
+        o.setVisible(true);
+    }//GEN-LAST:event_SLBarangActionPerformed
+
+    private void SLPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SLPelangganActionPerformed
+        v_report_pelanggan o = new v_report_pelanggan();
+        o.setVisible(true);
+    }//GEN-LAST:event_SLPelangganActionPerformed
 
     /**
      * @param args the command line arguments

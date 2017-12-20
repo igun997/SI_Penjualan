@@ -63,6 +63,15 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="datechooser.beans.DateChooserCombo" name="end">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="start">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tanggal Mulai"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tanggal Akhir"/>
@@ -75,15 +84,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="datechooser.beans.DateChooserCombo" name="end">
-    </Component>
-    <Component class="datechooser.beans.DateChooserCombo" name="start">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tanggal Mulai"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

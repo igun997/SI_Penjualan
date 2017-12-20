@@ -68,11 +68,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="BARANG"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SLBarangActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SLPelanggan">
               <Properties>
                 <Property name="text" type="java.lang.String" value="PELANGGAN"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SLPelangganActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SLTransaksi">
               <Properties>

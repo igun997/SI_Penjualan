@@ -6,7 +6,6 @@
 package system;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

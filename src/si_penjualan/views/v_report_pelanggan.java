@@ -6,8 +6,6 @@
 package si_penjualan.views;
 
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -27,21 +25,18 @@ import system.dbconnection;
  *
  * @author systemfive
  */
-public class v_report_barang extends javax.swing.JFrame {
-
+public class v_report_pelanggan extends javax.swing.JFrame {
     Map param = new HashMap();
     JasperReport JasRep;
     JasperDesign JasDes;
     JasperPrint JasPrint;
-    public v_report_barang() {
+    /**
+     * Creates new form v_report_pelanggan
+     */
+    public v_report_pelanggan() {
         initComponents();
-        initDate();
     }
-    public void initDate() {
-        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        start.setDateFormat(dateFormat);
-        end.setDateFormat(dateFormat);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,13 +46,15 @@ public class v_report_barang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         end = new datechooser.beans.DateChooserCombo();
         start = new datechooser.beans.DateChooserCombo();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Tanggal Mulai");
 
         jLabel2.setText("Tanggal Akhir");
 
@@ -67,8 +64,6 @@ public class v_report_barang extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Tanggal Mulai");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,13 +104,13 @@ public class v_report_barang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       getFile gf = new getFile();
-        InputStream report = gf.fetch("periode_report_barang.jrxml");
+        getFile gf = new getFile();
+        InputStream report = gf.fetch("periode_report_pelanggan.jrxml");
         try {
             HashMap hash = new HashMap(2);
             //Mengambil parameter dari ireport
-            hash.put("start", start.getText());
-            hash.put("end", end.getText());
+            hash.put("tglPesan", start.getText());
+            hash.put("tglTerima", end.getText());
             JasDes = JRXmlLoader.load(report);
             param.clear();
             JasRep = JasperCompileManager.compileReport(JasDes);
@@ -143,20 +138,20 @@ public class v_report_barang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(v_report_barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(v_report_pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(v_report_barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(v_report_pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(v_report_barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(v_report_pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(v_report_barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(v_report_pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_report_barang().setVisible(true);
+                new v_report_pelanggan().setVisible(true);
             }
         });
     }
